@@ -6,7 +6,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+
 using Repo;
+using Service.AddInterface;
+using Service.Implements;
 
 namespace Api
 {
@@ -24,6 +27,8 @@ namespace Api
             var connectionString = Configuration.GetConnectionString("CompanyDB");
             services.AddDbContextPool<Contextclass>(option => option.UseSqlServer(connectionString));
             services.AddControllersWithViews();
+            services.AddScoped< Iitnerface,  Userservice > ();
+          
             services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
